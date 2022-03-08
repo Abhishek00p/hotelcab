@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 
-void main() => runApp(MaterialApp(home: Hotel()));
+void main() =>
+    runApp(MaterialApp(debugShowCheckedModeBanner: false, home: Hotel()));
 
 class Hotel extends StatelessWidget {
   const Hotel({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class Hotel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         backgroundColor: Colors.black,
         foregroundColor: Colors.white70,
         title: const Text("HotelCab"),
