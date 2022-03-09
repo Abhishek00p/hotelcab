@@ -13,12 +13,23 @@ class HomePage extends StatelessWidget {
         SizedBox(
           height: 40.0,
         ),
-        TextButton.icon(
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Hotel())),
-          icon: const Icon(Icons.home),
-          label: const Text(""),
+        Row(
+          children: [
+            SizedBox(
+              width: 10.0,
+            ),
+            Text("Number of Passanger"),
+            SizedBox(
+              width: 20.0,
+            ),
+            Container(
+              child: Text("select here"),
+            )
+          ],
         ),
+        SizedBox(
+          height: 10.0,
+        )
       ],
     )));
   }
