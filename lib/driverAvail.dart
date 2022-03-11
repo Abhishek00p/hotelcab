@@ -6,8 +6,8 @@ class Driver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(child: Text(" REcent Driver Tab")),
+    return SafeArea(
+      child: Container(child: Text(" REcent Driver Tab")),
     );
   }
 }

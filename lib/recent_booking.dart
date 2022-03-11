@@ -6,8 +6,8 @@ class Booking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(child: Text(" REcent Booking Tab")),
+    return SafeArea(
+      child: Container(child: Text(" REcent Booking Tab")),
     );
   }
 }

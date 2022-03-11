@@ -6,8 +6,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+    return SafeArea(
+        child: Container(
             child: Column(
       children: [
         SizedBox(
