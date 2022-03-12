@@ -3,17 +3,23 @@ import 'package:hotelcab/driverAvail.dart';
 import 'package:hotelcab/hotel_Profile.dart';
 import 'package:hotelcab/login.dart';
 import 'package:hotelcab/recent_booking.dart';
+import 'package:hotelcab/registeration.dart';
 import 'home.dart';
 
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 void main() => runApp(MaterialApp(
       initialRoute: '/',
-      routes: {'/': (BuildContext context) => Login_Page()},
+      routes: {
+        '/': (BuildContext context) => const LoginPage(),
+        '/login': (BuildContext context) => const LoginPage(),
+        '/register': (BuildContext context) => const Registration(),
+        '/home': (BuildContext context) => const Hotel()
+      },
       debugShowCheckedModeBanner: false,
     ));
 
-List<Widget> _pages = [HomePage(), Booking(), Driver(), Hotel_Profile()];
+List<Widget> _pages = [const HomePage(), const Booking(), const Driver()];
 
 class Hotel extends StatefulWidget {
   const Hotel({Key? key}) : super(key: key);
@@ -28,8 +34,16 @@ class _HotelState extends State<Hotel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
-        title: Center(child: Text("HotelCab")),
+        backgroundColor: Color.fromARGB(255, 34, 31, 31),
+        title: Center(
+            child: Text(
+          "HotelCab",
+          style: TextStyle(color: Colors.white),
+        )),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {},
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -46,6 +60,7 @@ class _HotelState extends State<Hotel> {
           activeColor: Colors.white,
           tabBorderRadius: 10.0,
           tabMargin: EdgeInsets.only(left: 5.0, bottom: 5.0, top: 5.0),
+          gap: 5.0,
           tabs: [
             GButton(
               icon: Icons.home,
@@ -53,7 +68,7 @@ class _HotelState extends State<Hotel> {
               onPressed: () {},
             ),
             GButton(
-              icon: Icons.car_rental,
+              icon: Icons.commute_outlined,
               text: "Recent",
               onPressed: () {},
             ),
