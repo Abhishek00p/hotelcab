@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:hotelcab/main.dart';
-import 'package:hotelcab/registeration.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -108,27 +107,10 @@ class _LoginPageState extends State<LoginPage> {
                                   icon: Icon(
                                     Icons.arrow_forward,
                                   )),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Registration()));
-                                },
-                                child: Text(
-                                  "Sign Up",
-                                  style: TextStyle(fontSize: 24),
-                                )),
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
@@ -140,7 +122,10 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 )),
                           ],
-                        )
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
                       ],
                     ),
                   )

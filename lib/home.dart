@@ -6,31 +6,34 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Container(
-            child: Column(
-      children: [
-        SizedBox(
-          height: 40.0,
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Home"),
         ),
-        Row(
+        body: Container(
+            child: Column(
           children: [
             SizedBox(
-              width: 10.0,
+              height: 40.0,
             ),
-            Text("Number of Passanger"),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text("Number of Passanger"),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Container(
+                  child: Text("select here"),
+                )
+              ],
+            ),
             SizedBox(
-              width: 20.0,
-            ),
-            Container(
-              child: Text("select here"),
+              height: 10.0,
             )
           ],
-        ),
-        SizedBox(
-          height: 10.0,
-        )
-      ],
-    )));
+        )));
   }
 }
