@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 class Hotel_Profile extends StatelessWidget {
-  const Hotel_Profile({Key? key}) : super(key: key);
+   Hotel_Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

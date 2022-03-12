@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "667156846850",
+    "project_id": "hotelcab-107a0",
+    "storage_bucket": "hotelcab-107a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667156846850:android:e9571b44070a015f22ca1b",
+        "android_client_info": {
+          "package_name": "com.example.hotelcab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667156846850-990t7iiri1qm4lqj2v307pfhleu3fmbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8gPzDoMK7UhiMu_rMWUPC1y0IvOGckQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667156846850-990t7iiri1qm4lqj2v307pfhleu3fmbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

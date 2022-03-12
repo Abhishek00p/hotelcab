@@ -5,24 +5,28 @@ import 'package:hotelcab/login.dart';
 import 'package:hotelcab/recent_booking.dart';
 import 'package:hotelcab/registeration.dart';
 import 'home.dart';
-
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (BuildContext context) => const LoginPage(),
-        '/login': (BuildContext context) => const LoginPage(),
-        '/register': (BuildContext context) => const Registration(),
-        '/home': (BuildContext context) => const Hotel()
-      },
-      debugShowCheckedModeBanner: false,
-    ));
+void main() {
+  // WidgetsFlutterBinding.ensureInitialized;
 
-List<Widget> _pages = [const HomePage(), const Booking(), const Driver()];
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      '/': (BuildContext context) => LoginPage(),
+      '/login': (BuildContext context) => LoginPage(),
+      '/register': (BuildContext context) => Registration(),
+      '/home': (BuildContext context) => Hotel()
+    },
+    debugShowCheckedModeBanner: false,
+  ));
+}
+
+List<Widget> _pages = [HomePage(), Booking(), Driver(), Hotel_Profile()];
 
 class Hotel extends StatefulWidget {
-  const Hotel({Key? key}) : super(key: key);
+  Hotel({Key? key}) : super(key: key);
 
   @override
   State<Hotel> createState() => _HotelState();
@@ -30,12 +34,14 @@ class Hotel extends StatefulWidget {
 
 class _HotelState extends State<Hotel> {
   int _selectedIndex = 0;
+  // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 34, 31, 31),
-        title: Center(
+        title: const Center(
             child: Text(
           "HotelCab",
           style: TextStyle(color: Colors.white),
@@ -75,6 +81,11 @@ class _HotelState extends State<Hotel> {
             GButton(
               icon: Icons.person_outlined,
               text: "Drivers",
+              onPressed: () {},
+            ),
+            GButton(
+              icon: Icons.account_balance_outlined,
+              text: "Hotel Profile",
               onPressed: () {},
             ),
           ],

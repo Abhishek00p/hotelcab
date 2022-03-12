@@ -3,7 +3,7 @@ import 'package:hotelcab/main.dart';
 import 'package:hotelcab/registeration.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -13,23 +13,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var _height = MediaQuery.of(context).size.height;
-
+    var _width = MediaQuery.of(context).size.width;
+    bool obsecureValue = true;
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Color.fromARGB(200, 0, 0, 0),
       body: Stack(
         children: [
           Container(
             height: _height / 3,
+            width: _width / 1.3,
             decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: const BorderRadius.only(
-                    // bottomLeft: Radius.circular(150),
+                color: Colors.deepOrangeAccent,
+                borderRadius: BorderRadius.only(
+                    // topLeft: Radius.circular(150),
+                    // bottomLeft: Radius.circular(300),
                     bottomRight: Radius.circular(200))),
           ),
           Container(
-            padding: const EdgeInsets.only(left: 35, top: 130),
-            child: const Text(
-              'Welcome\n \t  Back',
+            padding: EdgeInsets.only(left: _width / 2.5, top: 130),
+            child: Text(
+              'Welcome  Back ,',
               style: TextStyle(color: Colors.black, fontSize: 33),
             ),
           ),
@@ -42,11 +45,11 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(left: 35, right: 35),
+                    margin: EdgeInsets.only(left: 80, right: 80, bottom: 80),
                     child: Column(
                       children: [
                         TextField(
-                          style: const TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                           decoration: InputDecoration(
                               fillColor: Colors.grey.shade100,
                               filled: true,
@@ -55,57 +58,64 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(10),
                               )),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 30,
                         ),
                         TextField(
-                          style: const TextStyle(),
-                          obscureText: true,
+                          style: TextStyle(fontSize: 20),
+                          obscureText: obsecureValue,
                           decoration: InputDecoration(
                               fillColor: Colors.grey.shade100,
                               filled: true,
                               hintText: "Password",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                              )),
+                              ),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    obsecureValue = false;
+                                  },
+                                  icon: Icon(Icons.remove_red_eye))),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 40,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'Sign in',
                               style: TextStyle(
                                   fontSize: 27,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white),
                             ),
+                            SizedBox(
+                              width: 20,
+                            ),
                             CircleAvatar(
                               radius: 30,
                               backgroundColor:
-                                  const Color.fromARGB(255, 119, 122, 129),
+                                  Color.fromARGB(255, 119, 122, 129),
                               child: IconButton(
                                   color: Colors.white,
                                   onPressed: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Hotel()));
+                                            builder: (context) => Hotel()));
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.arrow_forward,
                                   )),
                             )
                           ],
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 40,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             TextButton(
                                 onPressed: () {
@@ -113,15 +123,15 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Registration()));
+                                              Registration()));
                                 },
-                                child: const Text(
+                                child: Text(
                                   "Sign Up",
                                   style: TextStyle(fontSize: 24),
                                 )),
                             TextButton(
                                 onPressed: () {},
-                                child: const Text(
+                                child: Text(
                                   'Forgot Password',
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
