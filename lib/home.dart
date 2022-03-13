@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Container(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               height: 40.0,
@@ -32,7 +33,9 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(
               height: 10.0,
-            )
+            ),
+            Text("User name : "),
+            Text("User contact number : ")
           ],
         )));
   }

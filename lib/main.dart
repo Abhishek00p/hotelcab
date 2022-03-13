@@ -8,9 +8,10 @@ import 'home.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized;
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized;
+  
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -33,12 +34,11 @@ class Hotel extends StatefulWidget {
 
 class _HotelState extends State<Hotel> {
   int _selectedIndex = 0;
-  // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       drawer: navigationD(),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 34, 31, 31),
