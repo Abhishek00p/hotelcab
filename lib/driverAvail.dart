@@ -8,7 +8,8 @@ class Driver extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Driver"),
+        backgroundColor: Colors.black,
+        title: Text("Driver", style: TextStyle(color: Colors.white)),
       ),
     );
   }

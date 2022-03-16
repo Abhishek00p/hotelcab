@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hotelcab/driverAvail.dart';
-import 'package:hotelcab/home.dart';
 import 'package:hotelcab/hotel_Profile.dart';
+import 'package:hotelcab/main.dart';
 import 'package:hotelcab/recent_booking.dart';
 
 class navigationD extends StatelessWidget {
   navigationD({Key? key}) : super(key: key);
 
   final mypading = EdgeInsets.symmetric(horizontal: 20);
+
+  var _aut;
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Color.fromARGB(230, 0, 0, 0),
+        color: Colors.deepOrangeAccent,
         child: ListView(
           padding: mypading,
           children: [
@@ -59,7 +61,7 @@ Widget myMenuItem({
   required IconData icon,
   VoidCallback? onclicked,
 }) {
-  final color = Colors.white;
+  final color = Colors.black;
   return ListTile(
     leading: Icon(
       icon,
@@ -67,6 +69,7 @@ Widget myMenuItem({
     ),
     title: Text(text,
         style: TextStyle(
+          fontWeight: FontWeight.bold,
           color: color,
         )),
     onTap: onclicked,
@@ -76,12 +79,11 @@ Widget myMenuItem({
 void selectedItem(BuildContext context, int index) {
   switch (index) {
     case 0:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Hotel()));
       break;
     case 1:
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Booking()));
+          context, MaterialPageRoute(builder: (context) => UserInformation()));
       break;
     case 2:
       Navigator.push(

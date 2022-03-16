@@ -1,5 +1,9 @@
 import "package:flutter/material.dart";
+import 'package:hotelcab/DatabaseManager.dart';
+import 'package:hotelcab/home.dart';
 import 'package:hotelcab/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hotelcab/menuSidebar.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -9,11 +13,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var _emailController = TextEditingController();
+  var _passwordController = TextEditingController();
+  var _usernameController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  checkauth() async {
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Hotel()));
+      }
+    });
+  }
+
+  var userEmail;
+  var userPassword;
+  var userName;
+
   @override
   Widget build(BuildContext context) {
     var _height = MediaQuery.of(context).size.height;
     var _width = MediaQuery.of(context).size.width;
-    bool obsecureValue = true;
+    checkauth();
+
     return Scaffold(
       backgroundColor: Color.fromARGB(200, 0, 0, 0),
       body: Stack(
@@ -21,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             height: _height / 3,
             width: _width / 1.3,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.deepOrangeAccent,
                 borderRadius: BorderRadius.only(
                     // topLeft: Radius.circular(150),
@@ -30,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Container(
             padding: EdgeInsets.only(left: _width / 2.5, top: 130),
-            child: Text(
+            child: const Text(
               'Welcome  Back ,',
               style: TextStyle(color: Colors.black, fontSize: 33),
             ),
@@ -48,7 +72,22 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         TextField(
+                          controller: _usernameController,
+                          style: TextStyle(fontSize: 20),
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: "Username",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        TextField(
+                          controller: _emailController,
                           style: TextStyle(color: Colors.black, fontSize: 20),
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                               fillColor: Colors.grey.shade100,
                               filled: true,
@@ -61,20 +100,17 @@ class _LoginPageState extends State<LoginPage> {
                           height: 30,
                         ),
                         TextField(
+                          controller: _passwordController,
                           style: TextStyle(fontSize: 20),
-                          obscureText: obsecureValue,
+                          keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                              fillColor: Colors.grey.shade100,
-                              filled: true,
-                              hintText: "Password",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    obsecureValue = false;
-                                  },
-                                  icon: Icon(Icons.remove_red_eye))),
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: "Password",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 40,
@@ -82,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Sign in',
                               style: TextStyle(
                                   fontSize: 27,
@@ -94,15 +130,48 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             CircleAvatar(
                               radius: 30,
-                              backgroundColor:
-                                  Color.fromARGB(255, 119, 122, 129),
+                              backgroundColor: Color.fromARGB(255, 36, 96, 238),
                               child: IconButton(
                                   color: Colors.white,
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Hotel()));
+                                  onPressed: () async {
+                                    try {
+                                      userName = _usernameController.text;
+                                      userEmail = _emailController.text;
+                                      if (userEmail == null ||
+                                          userEmail == "") {
+                                        return;
+                                      }
+                                      userPassword = _passwordController.text;
+
+                                      if (userPassword == null ||
+                                          userPassword == "") {
+                                        return;
+                                      }
+                                      if (userPassword.length < 6) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    'Your Password is Weeak')));
+                                        return;
+                                      }
+                                      print("my user : \n\n");
+                                      print(_auth.currentUser);
+
+                                      // print(userEmail + " " + userPassword);
+                                    } catch (e) {
+                                      print(e.toString());
+                                    }
+                                    Future<bool> userExist =
+                                        AuthenticationService(
+                                                _auth, userEmail, userPassword)
+                                            .checkIfEmailInUse();
+
+                                    if (userExist == true) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Hotel()));
+                                    }
                                   },
                                   icon: Icon(
                                     Icons.arrow_forward,
@@ -113,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             TextButton(
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Forgot Password',
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
