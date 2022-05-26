@@ -81,8 +81,8 @@ class CollectionReadWrite {
           })
           .then((value) => print("jio dhan dhana dhan\n"))
           .catchError((err) {
-            return false;
             print("\n\n the error wa s :" + err.toString());
+            return false;
           });
       return true;
     } catch (e) {

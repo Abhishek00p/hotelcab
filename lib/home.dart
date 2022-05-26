@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelcab/login.dart';
@@ -66,189 +65,164 @@ class _HomePageState extends State<HomePage> {
             height: _height,
             color: Colors.transparent,
           ),
-          Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Name of Customer : ",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: _width / 4,
-                    child: TextField(
-                      controller: _nameController,
-                      style: TextStyle(color: Colors.black, fontSize: 22),
-                      maxLength: 30,
-                      decoration: InputDecoration(
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          hintText: "Jhon Doe",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      height: _height / 2,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "Name of Customer : ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                            Text(
+                              "Number of Passanger : ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                            Text(
+                              "Contact Number : ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                            Text(
+                              "Location : ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                          ]),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Number of Passanger : ",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: _width / 4,
-                    child: TextField(
-                      controller: _PassangerController,
-                      style: TextStyle(color: Colors.black, fontSize: 22),
-                      maxLength: 2,
-                      decoration: InputDecoration(
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          hintText: "1",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
+                    Container(
+                      height: _height / 2.2,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: _width / 2,
+                              child: TextField(
+                                controller: _nameController,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                                maxLength: 30,
+                                decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade100,
+                                    filled: true,
+                                    hintText: "Jhon Doe",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              width: _width / 2,
+                              child: TextField(
+                                controller: _PassangerController,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                                maxLength: 2,
+                                decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade100,
+                                    filled: true,
+                                    hintText: "1",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              width: _width / 2,
+                              child: TextField(
+                                controller: _ContactController,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                                maxLength: 12,
+                                decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade100,
+                                    filled: true,
+                                    hintText: "9345445454",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              width: _width / 2,
+                              child: TextField(
+                                controller: _locationController,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22),
+                                maxLength: 40,
+                                decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade100,
+                                    filled: true,
+                                    hintText: "Taj Hotel, marine lines",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                              ),
+                            ),
+                          ]),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Contact Number : ",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: _width / 4,
-                    child: TextField(
-                      controller: _ContactController,
-                      style: TextStyle(color: Colors.black, fontSize: 22),
-                      maxLength: 15,
-                      decoration: InputDecoration(
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          hintText: "9345445454",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  const Text(
-                    "Location : ",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: _width / 4,
-                    child: TextField(
-                      controller: _locationController,
-                      style: TextStyle(color: Colors.black, fontSize: 22),
-                      maxLength: 40,
-                      decoration: InputDecoration(
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          hintText: "Taj Hotel, marine lines",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Total Fair : ",
-                    style: TextStyle(color: Colors.black, fontSize: 22),
-                  ),
-                  Center(
-                    child: Text(
-                      fair,
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Total Fair : ",
                       style: TextStyle(color: Colors.black, fontSize: 22),
                     ),
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    name = _nameController.text;
-                    locationn = _locationController.text;
-                    contact = _ContactController.text;
-                    nPassanger = _PassangerController.text;
+                    Center(
+                      child: Text(
+                        fair,
+                        style: TextStyle(color: Colors.black, fontSize: 22),
+                      ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      name = _nameController.text;
+                      locationn = _locationController.text;
+                      contact = _ContactController.text.trim();
+                      nPassanger = _PassangerController.text.trim();
 
-                    if (name.isNotEmpty &&
-                        contact.toString().isNotEmpty &&
-                        nPassanger.toString().isNotEmpty &&
-                        locationn.isNotEmpty) {
-                      bool mybool = CollectionReadWrite().myAddFunc(
-                          name,
-                          int.parse(nPassanger),
-                          int.parse(contact),
-                          locationn,
-                          int.parse(fair));
-                      if (mybool) {
-                        _nameController.text = "";
-                        _ContactController.text = "";
-                        _locationController.text = "";
-                        _PassangerController.text = "";
+                      if (name.toString().isNotEmpty &&
+                          contact.toString().isNotEmpty &&
+                          nPassanger.toString().isNotEmpty &&
+                          locationn.toString().isNotEmpty) {
+                        bool mybool = CollectionReadWrite().myAddFunc(
+                            name,
+                            int.parse(nPassanger),
+                            int.parse(contact),
+                            locationn,
+                            int.parse(fair));
+                        if (mybool) {
+                          _nameController.text = "";
+                          _ContactController.text = "";
+                          _locationController.text = "";
+                          _PassangerController.text = "";
 
-                        showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) =>
-                                myDialog("Customer Details added Succesfully"));
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) => myDialog(
+                                  "Customer Details added Succesfully"));
+                        }
+                      } else {
+                        print(
+                            "Input taklas ka ? -------------------------\n\n");
                       }
-                    } else {
-                      print("Input taklas ka ? -------------------------\n\n");
-                    }
-                  },
-                  child: Text("Submit"))
-            ],
+                    },
+                    child: Text("Submit"))
+              ],
+            ),
           ),
         ],
       ),

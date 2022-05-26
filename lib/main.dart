@@ -4,14 +4,9 @@ import 'package:hotelcab/home.dart';
 import "package:firebase_core/firebase_core.dart";
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized;
-  await Firebase.initializeApp(
-      options: FirebaseOptions(
-    apiKey: "AIzaSyAPL348l8tmicyZHqq2AiUVxN9P7zSFnIA",
-    appId: "1:667156846850:web:3f7e18e2cebe241d22ca1b",
-    messagingSenderId: "667156846850",
-    projectId: "hotelcab-107a0",
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
