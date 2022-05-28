@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelcab/PaymentG.dart';
 import 'package:hotelcab/login.dart';
 import 'package:hotelcab/DatabaseManager.dart';
 import 'DatabaseManager.dart';
@@ -19,12 +20,12 @@ class _HomePageState extends State<HomePage> {
   var email = LoginPage().createState().userEmail;
   var pass = LoginPage().createState().userPassword;
   final FirebaseAuth user = FirebaseAuth.instance;
-  var name, locationn, contact, nPassanger;
+  var name = " ", locationn = " ", contact = 0, nPassanger = 0;
   var fair = "250";
 
   var _nameController = TextEditingController();
   var _PassangerController = TextEditingController();
-  //passanger
+
   var _ContactController = TextEditingController();
   var _locationController = TextEditingController();
 
@@ -105,8 +106,11 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             SizedBox(
                               width: _width / 2,
-                              child: TextField(
+                              child: TextFormField(
                                 controller: _nameController,
+                                onEditingComplete: () {
+                                  name = _nameController.text;
+                                },
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16),
                                 maxLength: 30,
@@ -121,8 +125,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(
                               width: _width / 2,
-                              child: TextField(
+                              child: TextFormField(
                                 controller: _PassangerController,
+                                onEditingComplete: () {
+                                  nPassanger = _PassangerController.text.trim() as int;
+                                },
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16),
                                 maxLength: 2,
@@ -137,8 +144,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(
                               width: _width / 2,
-                              child: TextField(
+                              child: TextFormField(
                                 controller: _ContactController,
+                                onEditingComplete: () {
+                                  contact = _ContactController.text.trim() as int;
+                                },
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16),
                                 maxLength: 12,
@@ -153,8 +163,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(
                               width: _width / 2,
-                              child: TextField(
+                              child: TextFormField(
                                 controller: _locationController,
+                                onEditingComplete: () {
+                                  locationn = _nameController.text;
+                                },
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 22),
                                 maxLength: 40,
@@ -188,19 +201,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      name = _nameController.text;
-                      locationn = _locationController.text;
-                      contact = _ContactController.text.trim();
-                      nPassanger = _PassangerController.text.trim();
-
                       if (name.toString().isNotEmpty &&
                           contact.toString().isNotEmpty &&
                           nPassanger.toString().isNotEmpty &&
                           locationn.toString().isNotEmpty) {
                         bool mybool = CollectionReadWrite().myAddFunc(
                             name,
-                            int.parse(nPassanger),
-                            int.parse(contact),
+                            nPassanger,
+                            contact,
                             locationn,
                             int.parse(fair));
                         if (mybool) {
@@ -219,6 +227,10 @@ class _HomePageState extends State<HomePage> {
                         print(
                             "Input taklas ka ? -------------------------\n\n");
                       }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentGateway()));
                     },
                     child: Text("Submit"))
               ],

@@ -72,16 +72,22 @@ class _VerifyEmailState extends State<VerifyEmail> {
                 child: Center(
                   child: GestureDetector(
                     onTap: () async {
-                      print("Token ");
-                      print(user?.email);
-                      if (user?.email == _controller.text &&
-                          !user!.emailVerified) {
-                        await user?.sendEmailVerification();
-                      }
-                      if (user?.email == _controller.text.trim() &&
-                          user!.emailVerified) {
-                        auth.sendPasswordResetEmail(
-                            email: _controller.text.trim());
+                      final list = await FirebaseAuth.instance
+                          .fetchSignInMethodsForEmail(_controller.text.trim());
+                      if (list.isEmpty) {
+                        print("User not found 78");
+                      } else {
+                        print("User found");
+                        await FirebaseAuth.instance
+                            .sendPasswordResetEmail(
+                                email: _controller.text.trim())
+                            .then((value) {
+                          Navigator.pop(context);
+                        }).onError((error, stackTrace) {
+                          print("Emailverify 87");
+                          print(error);
+                          print(stackTrace);
+                        });
                       }
                     },
                     child: Container(
